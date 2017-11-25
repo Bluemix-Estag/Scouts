@@ -1,0 +1,17 @@
+{
+  "name": "carolafc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "*",
+    "request": "*"
+  },
+  "author": "",
+  "license": "ISC"
+}

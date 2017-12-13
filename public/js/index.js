@@ -108,3 +108,18 @@ function xhrGet(url, callback, errback) {
     xhr.ontimeout = errback;
     xhr.send();
 }
+
+function createHistoryCard(player, team) {
+    let img = (player.image != undefined) ? player.image : '/img/player_icon.png';
+    let logo = (player.team_logo != undefined) ? player.team_logo : '/img/brasillogo.png';
+    let role = (player.role != undefined) ? player.role : 'JOGADOR';
+    return '<div class="col s6 offset-7">' +
+        '<div class="card row flex">' +
+        '<div class="col s3 scouts-label center-align"><img  src="' + logo + '"class="logo"/>' + team + '</div>' +
+        '<div class="col s3 scouts-label center-align"><img  src="' + img + '" class="player-pic center-align nospace"/></div>' +
+        '<div class="col s3 scouts-label center-align">' + player.nome + '</span><br><span class="scouts-label">' + role + '</span></div>' +
+        '<div class="col s3 scouts-label center-align">' + player.scouts.lance  + '</div>' +
+        '<div class="col s3 scouts-label center-align">' + /*QUESTAO DO TEMPO*/ + '</div>' +
+        '</div>' +
+        '</div>';
+}

@@ -47,6 +47,14 @@ xhrGet('/players', function(resultado) {
     alert('Ai caquita')
 })
 
+xhrGet('/history', function (resultado) {
+    // aqui cai no caso de status code 200
+    resultado = JSON.parse(resultado);
+
+}, function (error) {
+    //aqui cai no caso de erro
+    alert('Ai caquita')
+})
 
 function createPlayerCard(player, team){
     let img = (player.image != undefined )?player.image:'/img/player_icon.png';
@@ -64,4 +72,9 @@ function createPlayerCard(player, team){
                     '<div class="col s2 center-align scouts">'+player.scouts.passe_decisivo+'</div>'+                
            '</div>'+
         '</div>';
+}
+
+function addHistory(){
+    let img = (player.image != undefined) ? player.image : '/img/player_icon.png';
+    let role = (player.role != undefined) ? player.role : 'JOGADOR';
 }

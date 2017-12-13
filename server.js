@@ -20,6 +20,10 @@ app.get('/select',(req,res) =>{
     res.render('select.html');
 })
 
+app.get('/history', (req, res)=>{
+    res.render('history.html')
+})
+
 app.get('/players', (req,res) => {
 
     var postBody = {

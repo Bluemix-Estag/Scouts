@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Scouts</title>
+        <meta charset="UTF-8">
+          <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  
+    <style>
+        .flex{
+            display: flex;
+            flex-direction:row;
+            align-items: center;
+            padding: 10px;
+        }
+        .center-flex{
+        	display:flex;
+        	justify-content:center;
+        	margin-bottom:20px;
+        }
+        
+        .logo_div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px 0 10px;
+        }
+        .logo{
+            width: 50px;
+            height: 50px;
+        }
+        .player-pic{
+            width: 90px;
+            height: 90px;
+
+            padding-top: 10px;
+        }
+        .player_name, .bold{
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .withSpace{
+           
+            margin: 0 20px 0 20px; 
+        }
+        .scouts{
+            font-size: 20px;
+            justify-content: center;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+        .scouts-label{
+            font-size: 12px;
+            margin: 0px !important;
+            padding: 0px !important;
+            justify-content: center;
+        }
+        body{
+        	padding-top: 50px;
+        	
+        }
+        .card{
+            background-color: #F9E9C0 !important;
+        }
+        .nospace {
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+        
+    </style>
+    
+    
+          
+    </head>
+    <body class="orange darken-3">
+    
+        <div class="row" id='idDoRow'>
+        
+        <div class="col s12 center-flex">
+        		<img  src="/img/cartola.png"/>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <div class="card row flex">
+                    <div class="col s3 scouts-label center-align">
+                        LANCE
+                    </div>
+                    <div class="col s7 scouts-label center-align">
+                        TOTAL 1
+                    </div>
+                    <div class="col s1 scouts-label center-align">
+                        TOTAL 2
+                    </div>
+                </div>
+                <div class="card row flex">
+                    CARTÕES AMARELOS
+                </div>
+                <div class="card row flex">
+                    CARTÕES VERMELHOS
+                </div>
+                <div class="card row flex">
+                    PASSES CERTOS
+                </div>
+                <div class="card row flex">
+                    PASSE ERRADOS
+                </div>
+                <div class="card row flex">
+                    CHUTES A GOL
+                </div>
+                <div class="card row flex">
+                    GOLS
+                </div>
+                <div class="card row flex">
+                    ASSISTÊNCIAS
+                </div>
+                <div class="card row flex">
+                    FALTAS
+                </div>
+                <div class="card row flex">
+                    DESARMES
+                </div>
+                <div class="card row flex">
+                    DEFESAS
+                </div>
+            </div>
+            
+            <!-- <div class="col s12 m10 offset-m1 l8 offset-l2"> -->
+            <div class="col s6 offset-7">
+                <div class="card row flex">
+                    <!-- <div class="col s1 center-align scouts-label">
+                        TIME
+                    </div> -->
+                    <div class="col s3 scouts-label center-align">
+                        FOTO
+                    </div>        		
+                    <div class="col s3 scouts-label center-align">
+                        JOGADOR
+                    </div>
+                    <div class="col s4 center-align scouts-label">LANCE</div>
+                    <div class="col s2 center-align scouts-label">TEMPO</div>
+                    
+                            
+                    </div>
+                    
+                
+            </div>
+        </div>
+
+        
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+        <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="/js/index.js"></script>
+    </body>
+</html>

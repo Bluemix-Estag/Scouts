@@ -1,11 +1,9 @@
-
-
 const express= require('express');
 let request = require('request');
 
 let app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -33,7 +31,7 @@ app.get('/players', (req,res) => {
     }
 
     request({
-        url: 'https://jimmycricket-orquestrador.mybluemix.net/jimmycricket/api/v1/partida/findMatch',
+        url: 'http://jimmycricket-orquestrador.mybluemix.net/jimmycricket/api/v1/partida/findMatch',
         method: "POST",
         json: true,
         body: postBody

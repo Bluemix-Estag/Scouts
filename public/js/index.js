@@ -72,7 +72,6 @@ ws.onmessage = function (ev) {
 
 };
 
-
 function createPlayerCard(player, team) {
     let img = (player.image != undefined) ? player.image : '/img/player_icon.png';
     let logo = (player.team_logo != undefined) ? player.team_logo : '/img/brasillogo.png';
@@ -100,11 +99,12 @@ function createXHR() {
         } catch (e) {
             try {
                 return new ActiveXObject('Microsoft.XMLHTTP');
-            } catch (e) { }
+            } catch (e) {}
         }
     }
     return null;
 }
+
 function xhrGet(url, callback, errback) {
     var xhr = new createXHR();
     xhr.open("GET", url, true);

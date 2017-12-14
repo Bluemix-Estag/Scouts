@@ -5,7 +5,6 @@ try {
     console.log("caquita do websocket");
 }
 var timestamp_global = Date.now();
-
 ws.onopen = function (ev) {};
 ws.onclose = function (ev) {};
 ws.onmessage = function (ev) {

@@ -28,7 +28,8 @@ function createScoutCard(scout, timestamp) {
     let nome = scout.nome;
     let lance = scout.tipo;
     let interval = (timestamp_global - timestamp) / message.scouts.length;
-    let tempo = timestamp_global + interval * (i + 1);
+    let tempo = millisToMinutesAndSeconds(interval);
+    // let tempo = (timestamp_global + interval * (i + 1));
     return '<div class="col s12 m10 offset-m1 l8 offset-l2">' +
         '<div class="card row flex">' +
         '<div class="col s2 nospace center-align"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
@@ -37,4 +38,10 @@ function createScoutCard(scout, timestamp) {
         '<div class="col s2 center-align scouts">' + tempo + '</div>' +
         '</div>' +
         '</div>';
+}
+
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }

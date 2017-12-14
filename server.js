@@ -44,6 +44,7 @@ app.get('/players', (req,res) => {
     }, function (error, response, body){
         if(!error){
             console.log(body);
+            // console.log(body[0])
             res.status(200).json(body);
         }else{
             console.log(error);
@@ -74,6 +75,35 @@ app.get('/players', (req,res) => {
     // })
 })
 
+app.get('/stat', (req, res) => {
+
+    var postBody = {
+        campeonato: "Eliminatorias da Copa do Mundo",
+        ano: 2017,
+        equipes: {
+            mandante: "Brasil",
+            visitante: "Venezuela"
+        },
+        rodada: 1
+    }
+
+    request({
+        url: 'https://jimmycricket-orquestrador.mybluemix.net/jimmycricket/api/v1/partida/statistics',
+        method: "POST",
+        json: true,
+        body: postBody
+    }, function (error, response, body) {
+        if (!error) {
+            console.log('stat')
+            console.log(body);//body[0]->Brasil body[1]->venezuela
+            // console.log(body[0].stats.amarelo)
+            res.status(200).json(body);
+        } else {
+            console.log(error);
+            res.sendStatus(400);
+        }
+    });
+});
 
 
 app.listen(app.get('port'),'0.0.0.0',()=>{

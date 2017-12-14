@@ -27,7 +27,7 @@ ws.onopen = function (ev) {
         alert('Ai caquita')
     })
 
-    xhrGet('/stat', function(result){
+    xhrGet('/stat', function (result) {
         result = JSON.parse(result);
         var r = document.getElementById('idDoRow_stat');
         var str_1 = '';
@@ -43,7 +43,7 @@ ws.onopen = function (ev) {
             }
         }
         r.innerHTML += str_1;
-    }, function(err){
+    }, function (err) {
         alert('i deu erro');
     })
 };
@@ -76,6 +76,7 @@ ws.onmessage = function (ev) {
     }
 
 };
+
 
 function createPlayerCard(player, team) {
     let img = (player.image != undefined) ? player.image : '/img/player_icon.png';
@@ -129,20 +130,7 @@ function xhrGet(url, callback, errback) {
     xhr.send();
 }
 
-function createHistoryCard(player, team) {
-    let img = (player.image != undefined) ? player.image : '/img/player_icon.png';
-    let logo = (player.team_logo != undefined) ? player.team_logo : '/img/brasillogo.png';
-    let role = (player.role != undefined) ? player.role : 'JOGADOR';
-    return '<div class="col s6 offset-7">' +
-        '<div class="card row flex">' +
-            '<div class="col s3 scouts-label center-align"><img  src="' + logo + '"class="logo"/>' + team + '</div>' +
-            '<div class="col s3 scouts-label center-align"><img  src="' + img + '" class="player-pic center-align nospace"/></div>' +
-            '<div class="col s3 scouts-label center-align">' + player.nome + '</span><br><span class="scouts-label">' + role + '</span></div>' +
-            '<div class="col s3 scouts-label center-align">' + player.scouts.lance  + '</div>' +
-            '<div class="col s3 scouts-label center-align">' + /*QUESTAO DO TEMPO*/ + '</div>' +
-        '</div>' +
-    '</div>';
-}
+
 
 function createStatisticsCard(scout, key, n) {
     let s = scout.stats;

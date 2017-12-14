@@ -12,9 +12,9 @@ ws.onopen = function (ev) {
         // aqui cai no caso de status code 200
         resultado = JSON.parse(resultado);
         var row = document.getElementById('idDoRow');
-        //var header = document.getElementById('idDoHeader').outerHTML;
+        // var header = document.getElementById('idDoHeader').outerHTML;
         var str = "";
-        //var str = JSON.stringify(header);
+        var str = JSON.stringify(header);
         //console.log(document.getElementById('idDoHeader'));
 
         for (var i = 0; i < resultado[0].equipes[0].jogadores.length; i++) {
@@ -33,13 +33,7 @@ ws.onopen = function (ev) {
         var str_1 = '';
         for(var i = 0; i < result.length; i++){
             for (var key in result[0].stats) {
-            // if(key == 'amarelo'){
-                // alert(result[0].stats[key], key);
-                // createStatisticsCard(result[0].stats[key], key);
-                // createStatisticsCard(3, 1);
-            // }
                 createStatisticsCard(result[i], key, i);
-            // str_1 += createStatisticsCard(result[0].stats[key], result[0].equipes[0].nome);
             }
         }
         r.innerHTML += str_1;
@@ -54,6 +48,8 @@ ws.onclose = function (ev) {
 };
 
 ws.onmessage = function (ev) {
+    //alert(ev.data);
+    let msg = JSON.parse(ev.data);
     console.log(ev.data);
     if (ev.data == "Updated") {
         xhrGet('/players', function (resultado) {
@@ -63,15 +59,32 @@ ws.onmessage = function (ev) {
             var header = document.getElementById('foto').outerHTML + document.getElementById('idDoHeader').outerHTML;
             var str = header;
             //console.log(str);
-
+            
             for (var i = 0; i < resultado[0].equipes[0].jogadores.length; i++) {
                 str += createPlayerCard(resultado[0].equipes[0].jogadores[i], resultado[0].equipes[0].nome);
             }
             row.innerHTML = str;
-
+            
         }, function (error) {
             //aqui cai no caso de erro
             alert('Ai caquita')
+        })
+    }
+    
+    if(msg.scouts != undefined){
+        xhrGet('/stat', function (result) {
+            result = JSON.parse(result);
+            var r = document.getElementById('idDoRow_stat');
+            // var header_s = document.getElementById()
+            var str_1 = '';
+            for (var i = 0; i < result.length; i++) {
+                for (var key in result[0].stats) {
+                    createStatisticsCard(result[i], key, i);
+                }
+            }
+            r.innerHTML += str_1;
+        }, function (err) {
+            alert('i deu erro');
         })
     }
 

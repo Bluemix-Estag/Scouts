@@ -12,14 +12,14 @@ ws.onmessage = function (ev) {
     var message = JSON.parse(ev.data);
     if (message.scouts != undefined) {
         // {scouts:[{"tipo":"certo","nome":"Neymar","posicao":"14"}],"timestamp":1513260085966}
-        var row = document.getElementById('idDoRow');
+        var row = document.getElementById('idDoRow_sta');
         var header = document.getElementById('foto').outerHTML + document.getElementById('idDoHeader').outerHTML;
         var str = header;
         for (var i = 0; i < message.scouts.length; i++) {
             str += createScoutCard(message.scouts[i], message.timestamp);
         }
         timestamp_global = message.timestamp;
-        row.innerHTML = str;
+        row.innerHTML += str;
     }
 };
 

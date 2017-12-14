@@ -96,7 +96,7 @@ app.get('/stat', (req, res) => {
         if (!error) {
             console.log('stat')
             console.log(body);//body[0]->Brasil body[1]->venezuela
-            // console.log(body[0].stats.amarelo)
+            // console.log(body[0].stats['amarelo'])
             res.status(200).json(body);
         } else {
             console.log(error);

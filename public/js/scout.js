@@ -12,7 +12,8 @@ ws.onmessage = function (ev) {
     var message = JSON.parse(ev.data);
     if (message.scouts != undefined) {
         // {scouts:[{"tipo":"certo","nome":"Neymar","posicao":"14"}],"timestamp":1513260085966}
-        var row = document.getElementById('idDoRow_sta');
+        // var r = document.getElementById('idDoRow_sta');
+        var row = document.getElementById('iddorow2');
         var str = "";
         for (var i = 0; i < message.scouts.length; i++) {
             str += createScoutCard(message.scouts[i], message.timestamp, message.scouts.length);
@@ -47,11 +48,11 @@ function createScoutCard(scout, timestamp, message, length) {
     // let interval = (timestamp_global - timestamp) / length;
     // let tempo = millisToMinutesAndSeconds(interval);
     // let tempo = (timestamp_global + interval * (i + 1));
-    return '<div class="col s12 m10 offset-m1 l8 offset-l2">' +
+    return '<div class="col s12">' +
         '<div class="card row flex">' +
-        '<div class="col s2 center-align scouts-label"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
-        '<div class="col s2 center-align scouts-label"><span class="player_name">' + nome + '</span></div>' +
-        '<div class="col s2 center-align scouts-label">' + lance + '</div>' +
+        '<div class="col s3 center-align scouts-label"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
+        '<div class="col s3 center-align scouts-label"><span class="player_name">' + nome + '</span></div>' +
+        '<div class="col s4 center-align scouts-label">' + lance + '</div>' +
         '<div class="col s2 center-align scouts-label">' + tempo + '</div>' +
         '</div>' +
         '</div>';

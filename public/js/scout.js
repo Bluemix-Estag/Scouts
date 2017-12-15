@@ -23,32 +23,12 @@ ws.onmessage = function (ev) {
     }
 };
 
-// ws.onmessage = function (ev) {
-//     console.log(ev.data);
-//     var message = JSON.parse(ev.data);
-//     if (message.scouts != undefined) {
-//         var row = document.getElementById('idDoRow');
-//         var header = document.getElementById('foto').outerHTML + document.getElementById('idDoHeader').outerHTML;
-//         var str = "";
-//         //console.log(str);
-
-//         for (var i = 0; i < message.scouts.length; i++) {
-//             str += createHistoryCard(message.scouts[i], message.timestamp);
-//         }
-//         console.log(str);
-//         row.innerHTML += str;
-//     }
-// };
-
 function createScoutCard(scout, timestamp, length) {
     let img = '/img/player_icon.png';
     let nome = scout.nome;
     let lance = scout.tipo;
-    // let tempo = timestamp_global;
-    let interval = -1*(timestamp_global - timestamp) / length;
+    let interval = (timestamp - timestamp_global) / length;
     let tempo = millisToMinutesAndSeconds(interval);
-    // console.log()
-    // tempo = (timestamp_global + interval * (i + 1));
     return '<div>' +
         '<div class="card row flex">' +
         '<div class="col s3 center-align scouts-label"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +

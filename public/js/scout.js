@@ -18,7 +18,7 @@ ws.onmessage = function (ev) {
         for (var i = 0; i < message.scouts.length; i++) {
             str += createScoutCard(message.scouts[i], message.timestamp, message.scouts.length);
         }
-        timestamp_global = message.timestamp;
+        // timestamp_global = message.timestamp;
         row.innerHTML += str;
     }
 };
@@ -40,14 +40,15 @@ ws.onmessage = function (ev) {
 //     }
 // };
 
-function createScoutCard(scout, timestamp, message, length) {
+function createScoutCard(scout, timestamp, length) {
     let img = '/img/player_icon.png';
     let nome = scout.nome;
     let lance = scout.tipo;
-    let tempo = timestamp_global;
-    // let interval = (timestamp_global - timestamp) / length;
-    // let tempo = millisToMinutesAndSeconds(interval);
-    // let tempo = (timestamp_global + interval * (i + 1));
+    // let tempo = timestamp_global;
+    let interval = -1*(timestamp_global - timestamp) / length;
+    let tempo = millisToMinutesAndSeconds(interval);
+    // console.log()
+    // tempo = (timestamp_global + interval * (i + 1));
     return '<div>' +
         '<div class="card row flex">' +
         '<div class="col s3 center-align scouts-label"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +

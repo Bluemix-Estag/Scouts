@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="shortcut icon" href="http://s.glbimg.com/es/ge/static/live/globoesporte/img/logos/favicon.png">
     <style>
+        p {
+            font-size: 15px;
+        }
         .flex {
             display: flex;
             flex-direction: row;
@@ -50,6 +53,10 @@
         .heightcard {
             height: 5em;
         }
+
+        .cardHeader {
+            background-color: #116f0f !important;
+        }
     </style>
 
 
@@ -63,18 +70,14 @@
         </div>
         <div class="row" id='idDoRow_stat'>
             <div class="col s6">
-                <div class="card row flex">
+                <div class="card row flex cardHeader">
                     <div class="col s6 scouts-label center-align">
                         <div class="col s6 scouts-label left-align">
                             <p>LANCE</p>
                         </div>
                     </div>
-                    <div class="col s3 scouts-label center-align">
-                        Mandante
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        Visitante
-                    </div>
+                    <div class="col s3 scouts-label center-align"><p>Mandante</p></div>
+                    <div class="col s3 scouts-label center-align"><p>Visitante</p></div>
                 </div>
                 <div class="card row flex heightcard">
                     <div class="col s6 scouts-label">
@@ -188,6 +191,7 @@
                 </div>
             </div>
             <div class="col s6">
+<<<<<<< HEAD
                 <div class="card row flex" id="idDoRow_sta">
                     <div class="col s3 scouts-label center-align">
                         <p>FOTO</p>
@@ -201,6 +205,13 @@
                     <div class="col s2 center-align scouts-label">
                         <p>TEMPO</p>
                     </div>
+=======
+                <div class="card row flex cardHeader" id="idDoRow_sta">
+                    <div class="col s3 scouts-label center-align"><p>FOTO</p></div>
+                    <div class="col s3 scouts-label center-align"><p>JOGADOR</p></div>
+                    <div class="col s4 center-align scouts-label"><p>LANCE</p></div>
+                    <div class="col s2 center-align scouts-label"><p>TEMPO</p></div>
+>>>>>>> 310997360ec4dbc8b096120adb7b58a8ea9f3515
                 </div>
                 <div id="iddorow2"></div>
             </div>

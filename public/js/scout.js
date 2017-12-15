@@ -31,9 +31,9 @@ function createScoutCard(scout, timestamp, length) {
     return '<div>' +
         '<div class="card row flex">' +
         '<div class="col s3 center-align scouts-label"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
-        '<div class="col s3 center-align scouts-label"><span class="player_name">' + nome + '</span></div>' +
-        '<div class="col s4 center-align scouts-label">' + lance + '</div>' +
-        '<div class="col s2 center-align scouts-label">' + tempo + '</div>' +
+        '<div class="col s3 center-align scouts-label"><span class="player_name"><p>' + nome + '</p></span></div>' +
+        '<div class="col s4 center-align scouts-label"><p>' + lance + '</p></div>' +
+        '<div class="col s2 center-align scouts-label"><p>' + tempo + '</p></div>' +
         '</div>' +
         '</div>';
 }

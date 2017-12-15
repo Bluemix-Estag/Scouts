@@ -48,7 +48,7 @@ function createScoutCard(scout, timestamp, message, length) {
     // let interval = (timestamp_global - timestamp) / length;
     // let tempo = millisToMinutesAndSeconds(interval);
     // let tempo = (timestamp_global + interval * (i + 1));
-    return '<div class="col s12">' +
+    return '<div>' +
         '<div class="card row flex">' +
         '<div class="col s3 center-align scouts-label"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
         '<div class="col s3 center-align scouts-label"><span class="player_name">' + nome + '</span></div>' +

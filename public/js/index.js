@@ -4,110 +4,74 @@ try {
 } catch (err) {
     console.log("caquita do websocket");
 }
-
-
+var timestamp_init = Date.now();
+var timestamp_last = Date.now();
+var timerID = 0;
 ws.onopen = function (ev) {
-
-    // xhrGet('/players', function (resultado) {
-    //     // aqui cai no caso de status code 200
-    //     resultado = JSON.parse(resultado);
-    //     var row = document.getElementById('idDoRow');
-    //     // var header = document.getElementById('idDoHeader').outerHTML;
-    //     var str = "";
-    //     var str = JSON.stringify(header);
-    //     //console.log(document.getElementById('idDoHeader'));
-
-    //     for (var i = 0; i < resultado[0].equipes[0].jogadores.length; i++) {
-    //         str += createPlayerCard(resultado[0].equipes[0].jogadores[i], resultado[0].equipes[0].nome);
-    //     }
-    //     // row.innerHTML += str;//comentei porque nao esta sendo usado no history
-
-    // }, function (error) {
-    //     //aqui cai no caso de erro
-    //     alert('Ai caquita')
-    // })
-
+    keepAlive();
     xhrGet('/stat', function (result) {
         result = JSON.parse(result);
         var r = document.getElementById('idDoRow_stat');
         var str_1 = '';
-        for(var i = 0; i < result.length; i++){
+        for (var i = 0; i < result.length; i++) {
             for (var key in result[0].stats) {
                 createStatisticsCard(result[i], key, i);
-            }
-        }
+            };
+        };
         r.innerHTML += str_1;
     }, function (err) {
         alert('i deu erro');
-    })
+    });
 };
-
-ws.onclose = function (ev) {
-
-
-};
-
 ws.onmessage = function (ev) {
-    //alert(ev.data);
     let msg = JSON.parse(ev.data);
-    console.log(ev.data);
-    // if (ev.data == "Updated") {
-    //     xhrGet('/players', function (resultado) {
-    //         // aqui cai no caso de status code 200
-    //         resultado = JSON.parse(resultado);
-    //         var row = document.getElementById('idDoRow');
-    //         var header = document.getElementById('foto').outerHTML + document.getElementById('idDoHeader').outerHTML;
-    //         var str = header;
-    //         //console.log(str);
-            
-    //         for (var i = 0; i < resultado[0].equipes[0].jogadores.length; i++) {
-    //             str += createPlayerCard(resultado[0].equipes[0].jogadores[i], resultado[0].equipes[0].nome);
-    //         }
-    //         row.innerHTML = str;
-            
-    //     }, function (error) {
-    //         //aqui cai no caso de erro
-    //         alert('Ai caquita')
-    //     })
-    // }
-    
-    if(msg.scouts != undefined){
+    console.log(msg);
+    if (msg.scouts != undefined) {
+        // {scouts:[{"tipo":"certo","nome":"Neymar","posicao":"14"}],"timestamp":1513260085966}
+        var row = document.getElementById('iddorow2');
+        var str = "";
+        for (var i = 0; i < msg.scouts.length; i++) {
+            let interval = (msg.timestamp - timestamp_last) / msg.scouts.length;
+            let timestamp = (msg.timestamp - timestamp_init) - interval * i;
+            str += createScoutCard(msg.scouts[i], timestamp, msg.scouts.length);
+        };
+        timestamp_last = msg.timestamp;
+        row.outerHTML += str;
+    };
+    if (msg.scouts != undefined) {
         xhrGet('/stat', function (result) {
             result = JSON.parse(result);
             var r = document.getElementById('idDoRow_stat');
-            // var header_s = document.getElementById()
             var str_1 = '';
             for (var i = 0; i < result.length; i++) {
                 for (var key in result[0].stats) {
                     createStatisticsCard(result[i], key, i);
-                }
-            }
+                };
+            };
             r.innerHTML += str_1;
         }, function (err) {
             alert('i deu erro');
-        })
-    }
-
+        });
+    };
+};
+ws.onclose = function (ev) {
+    cancelKeepAlive();
 };
 
+function keepAlive() {
+    let timeout = 20000;
+    if (ws.readyState == ws.OPEN) {
+        ws.send('');
+        console.log('Echo');
+    };
+    timerID = setTimeout(keepAlive, timeout);
+};
 
-// function createPlayerCard(player, team) {
-//     let img = (player.image != undefined) ? player.image : '/img/player_icon.png';
-//     let logo = (player.team_logo != undefined) ? player.team_logo : '/img/brasillogo.png';
-//     let role = (player.role != undefined) ? player.role : 'JOGADOR';
-//     var overall = Math.round((player.scouts.certo * 0.3 + player.scouts.errado * (-0.3) + player.scouts.passe_decisivo * 5) * 100) / 100;
-//     return '<div class="col s12 m10 offset-m1 l8 offset-l2">' +
-//         '<div class="card row flex">' +
-//         '<div class="col s1 nospace center-align"><img  src="' + logo + '"class="logo"/>' + team + '</div>' +
-//         '<div class="col s2 nospace center-align"><img  src="' + img + '" class="player-pic center-align nospace"/></div>' +
-//         '<div class="col s1 nospace center-align"><span class="player_name">' + player.nome + '</span><br><span class="scouts-label">' + role + '</span></div>' +
-//         '<div class="col s2 center-align scouts">' + overall + '</div>' +
-//         '<div class="col s2 center-align scouts">' + player.scouts.certo + '</div>' +
-//         '<div class="col s2 center-align scouts">' + player.scouts.errado + '</div>' +
-//         '<div class="col s2 center-align scouts">' + player.scouts.passe_decisivo + '</div>' +
-//         '</div>' +
-//         '</div>';
-// }
+function cancelKeepAlive() {
+    if (timerID) {
+        clearTimeout(timerID);
+    }
+};
 
 function createXHR() {
     if (typeof XMLHttpRequest != 'undefined') {
@@ -118,15 +82,15 @@ function createXHR() {
         } catch (e) {
             try {
                 return new ActiveXObject('Microsoft.XMLHTTP');
-            } catch (e) {}
-        }
-    }
+            } catch (e) {};
+        };
+    };
     return null;
-}
+};
 
 function xhrGet(url, callback, errback) {
     var xhr = new createXHR();
-    xhr.open("GET", url, true);
+    xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
@@ -134,29 +98,95 @@ function xhrGet(url, callback, errback) {
                 callback(xhr.responseText);
             } else {
                 errback((xhr.responseText));
-            }
-        }
+            };
+        };
     };
-
     xhr.timeout = 100000;
     xhr.ontimeout = errback;
     xhr.send();
+};
+
+function createScoutCard(scout, timestamp, length) {
+    let img = '/img/player_icon.png';
+    let nome = scout.nome;
+    let lance = lanceGenerico(scout.tipo);
+    let tempo = millisToMinutesAndSeconds(timestamp);
+    return '<div class="card row flex heightcard">' +
+        '<div class="col s3 scouts-label center-align"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
+        '<div class="col s3 scouts-label center-align"><span class="player_name"><p>' + nome + '</p></span></div>' +
+        '<div class="col s3 scouts-label center-align"><p>' + lance + '</p></div>' +
+        '<div class="col s3 scouts-label center-align"><p>' + tempo + '</p></div>' +
+        '</div>';
 }
 
+function millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return `${minutes}:${(seconds < 10 ? '0':'')}${seconds}`;
+};
 
+function lanceGenerico(param) {
+    switch (param) {
+        case 'certo':
+        case 'lance':
+        case 'passe_decisivo':
+            param = 'passe certo';
+            break;
+        case 'errado':
+            param = 'passe errado';
+            break;
+        case 'chute':
+        case 'chute_dentro_area_bloqueado':
+        case 'chute_dentro_area_defendido':
+        case 'chute_dentro_area_fora':
+        case 'chute_fora_da_area_bloqueado':
+        case 'chute_fora_da_area_defendido':
+        case 'chute_fora_da_area_para_fora':
+        case 'cobranca_falta_bloqueada':
+        case 'cabeceio_grande_area_defendido':
+            param = 'chute a gol';
+            break;
+        case 'gol_chute_dentro_area':
+            param = 'GOL';
+            break;
+        case 'assistencia':
+        case 'levantada':
+        case 'passe_decisivo':
+        case 'ultimo_passe':
+            param = 'assistência';
+            break;
+        case 'desarme':
+        case 'roubada':
+            param = 'desarme';
+            break;
+        case 'defesa_normal':
+            param = 'defesa do goleiro';
+            break;
+        case 'amarelo':
+            param = 'cartão amarelo';
+            break;
+        case 'falta_cometida':
+            param = 'falta cometida';
+            break;
+        default:
+            param = '_____';
+            break;
+    };
+    return param;
+};
 
 function createStatisticsCard(scout, key, n) {
     let s = scout.stats;
-    let certo = s[key] + s['lance'] + s['passe_decisivo'];;
-    let chute = s['chute_dentro_area_bloqueado'] + s['chute_dentro_area_defendido'] + s['chute_dentro_area_fora'] + s['chute_fora_da_area_bloqueado'] + s['chute_fora_da_area_defendido'] + s['chute_fora_da_area_para_fora'] + s['cobranca_falta_bloqueada'];
+    let certo = s[key] + s['lance'] + s['passe_decisivo'];
+    let chute = s['chute_dentro_area_bloqueado'] + s['chute_dentro_area_defendido'] +
+        s['chute_dentro_area_fora'] + s['chute_fora_da_area_bloqueado'] +
+        s['chute_fora_da_area_defendido'] + s['chute_fora_da_area_para_fora'] +
+        s['cobranca_falta_bloqueada'];
     let assistencia = s['levantada'] + s['passe_decisivo'];
-    let desarme = s['desarme']+s['roubada'];
-    switch (key){
+    let desarme = s['desarme'] + s['roubada'];
+    switch (key) {
         case 'amarelo':
             document.getElementById(`${key}_${n+1}`).innerHTML = s[key];
-            break;
-        case 'vermelho':
-            document.getElementById(`${key}_${n+1}`).innerHTML = scout.stats[key];
             break;
         case 'certo':
             document.getElementById(`${key}_${n + 1}`).innerHTML = certo;
@@ -182,13 +212,7 @@ function createStatisticsCard(scout, key, n) {
         case 'defesa_normal':
             document.getElementById(`${key}_${n + 1}`).innerHTML = s[key];
             break;
-    }
-    // return
-    // '<div class="col s6">' +
-    //     '<div class="card row flex">' +
-    //     '<div class="col s3 scouts-label center-align">' + scout +
-    //     '<div class="col s3 scouts-label center-align">' + player.scouts.lance + '</div>' +
-    //     '<div class="col s3 scouts-label center-align">' + /*QUESTAO DO TEMPO*/ + '</div>' +
-    //     '</div>' +
-    //     '</div>';
-}
+        default:
+            break;
+    };
+};

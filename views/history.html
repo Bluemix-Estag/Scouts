@@ -2,43 +2,41 @@
 <html>
 
 <head>
-    <title>Scouts</title>
     <meta charset="UTF-8">
+    <title>Scouts - Globo Esporte</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="shortcut icon" href="http://s.glbimg.com/es/ge/static/live/globoesporte/img/logos/favicon.png">
     <style>
         p {
-            font-size: 15px;
+            font-size: 1em;
         }
+
         .flex {
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 10px;
         }
 
         .center-flex {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
         }
 
         .player-pic {
-            width: 90px;
-            height: 90px;
-
-            padding-top: 10px;
+            width: 4.3em;
+            height: 4.3em;
+            padding: .3em 0 0 0;
         }
 
         .player_name {
             font-weight: bold;
-            font-size: 12px;
+            font-size: 1em;
         }
 
         .scouts-label {
-            font-size: 12px;
-            margin: 0px !important;
-            padding: 0px !important;
+            font-size: 1em;
+            margin: 0 !important;
+            padding: 0 !important;
             justify-content: center;
         }
 
@@ -58,9 +56,6 @@
             background-color: #116f0f !important;
         }
     </style>
-
-
-
 </head>
 
 <body class="body-color">
@@ -70,132 +65,131 @@
         </div>
         <div class="row" id='idDoRow_stat'>
             <div class="col s6">
-                <div class="card row flex cardHeader">
-                    <div class="col s6 scouts-label center-align">
-                        <div class="col s6 scouts-label left-align">
-                            <p>LANCE</p>
-                        </div>
+                <div class="cardHeader row flex heightcard" style="color: white">
+                    <div class="col s5 center-align scouts-label ">
+                        <p>LANCE</p>
                     </div>
-                    <div class="col s3 scouts-label center-align"><p>Mandante</p></div>
-                    <div class="col s3 scouts-label center-align"><p>Visitante</p></div>
-                </div>
-                <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
-                        <p>CARTÕES AMARELOS</p>
+                    <div class="col s4 scouts-label center-align">
+                        <p>MANDANTE</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="amarelo_1">0</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="amarelo_2">0</p>
+                    <div class="col s4 scouts-label center-align">
+                        <p>VISITANTE</p>
                     </div>
                 </div>
                 <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
-                        <p>CARTÕES VERMELHOS</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="vermelho_1">0</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="vermelho_2">0</p>
-                    </div>
-                </div>
-                <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
-                        <p>PASSES CERTOS</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="certo_1">0</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="certo_2">0</p>
-                    </div>
-                </div>
-                <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
-                        <p>PASSE ERRADOS</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="errado_1">0</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="errado_2">0</p>
-                    </div>
-                </div>
-                <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
-                        <p>CHUTES A GOL</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="chute_dentro_area_bloqueado_1">0</p>
-                    </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="chute_dentro_area_bloqueado_2">0</p>
-                    </div>
-                </div>
-                <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
+                    <div class="col s5 center-align scouts-label">
                         <p>GOLS</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="gol_chute_dentro_area_1">0</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="gol_chute_dentro_area_2">0</p>
                     </div>
                 </div>
                 <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
+                    <div class="col s5 center-align scouts-label">
                         <p>ASSISTÊNCIAS</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="levantada_1">0</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="levantada_2">0</p>
                     </div>
                 </div>
                 <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
-                        <p>FALTAS</p>
+                    <div class="col s5 center-align scouts-label">
+                        <p>CHUTES A GOL</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="falta_cometida_1">0</p>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="chute_dentro_area_bloqueado_1">0</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
-                        <p id="falta_cometida_2">0</p>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="chute_dentro_area_bloqueado_2">0</p>
                     </div>
                 </div>
                 <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
+                    <div class="col s5 center-align scouts-label">
+                        <p>PASSES CERTOS</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="certo_1">0</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="certo_2">0</p>
+                    </div>
+                </div>
+                <div class="card row flex heightcard">
+                    <div class="col s5 center-align scouts-label">
+                        <p>PASSES ERRADOS</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="errado_1">0</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="errado_2">0</p>
+                    </div>
+                </div>
+                <div class="card row flex heightcard">
+                    <div class="col s5 center-align scouts-label">
                         <p>DESARMES</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="desarme_1">0</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="desarme_2">0</p>
                     </div>
                 </div>
                 <div class="card row flex heightcard">
-                    <div class="col s6 scouts-label">
-                        <p>DEFESAS</p>
+                    <div class="col s5 center-align scouts-label">
+                        <p>DEFESAS DO GOLEIRO</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="defesa_normal_1">0</p>
                     </div>
-                    <div class="col s3 scouts-label center-align">
+                    <div class="col s4 scouts-label center-align">
                         <p id="defesa_normal_2">0</p>
+                    </div>
+                </div>
+                <div class="card row flex heightcard">
+                    <div class="col s5 center-align scouts-label">
+                        <p>FALTAS COMETIDAS</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="falta_cometida_1">0</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="falta_cometida_2">0</p>
+                    </div>
+                </div>
+                <div class="card row flex heightcard">
+                    <div class="col s5 center-align scouts-label">
+                        <p>CARTÕES AMARELOS</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="amarelo_1">0</p>
+                    </div>
+                    <div class="col s4 scouts-label center-align">
+                        <p id="amarelo_2">0</p>
                     </div>
                 </div>
             </div>
             <div class="col s6">
-                <div class="card row flex cardHeader" id="idDoRow_sta">
-                    <div class="col s3 scouts-label center-align"><p>FOTO</p></div>
-                    <div class="col s3 scouts-label center-align"><p>JOGADOR</p></div>
-                    <div class="col s4 center-align scouts-label"><p>LANCE</p></div>
-                    <div class="col s2 center-align scouts-label"><p>TEMPO</p></div>
+                <div class="cardHeader row flex heightcard" id="idDoRow_sta" style="color: white">
+                    <div class="col s3 scouts-label center-align">
+                        <p>FOTO</p>
+                    </div>
+                    <div class="col s3 scouts-label center-align">
+                        <p>JOGADOR</p>
+                    </div>
+                    <div class="col s3 center-align scouts-label">
+                        <p>LANCE</p>
+                    </div>
+                    <div class="col s3 center-align scouts-label">
+                        <p>TEMPO</p>
+                    </div>
                 </div>
                 <div id="iddorow2"></div>
             </div>
@@ -203,7 +197,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="/js/scout.js"></script>
     <script src="/js/index.js"></script>
 </body>
 

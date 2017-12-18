@@ -7,6 +7,7 @@ try {
 var timestamp_init = Date.now();
 var timestamp_last = Date.now();
 var timerID = 0;
+var history_html = '';
 ws.onopen = function (ev) {
     keepAlive();
     xhrGet('/stat', function (result) {
@@ -25,18 +26,19 @@ ws.onopen = function (ev) {
 };
 ws.onmessage = function (ev) {
     let msg = JSON.parse(ev.data);
-    console.log(msg);
     if (msg.scouts != undefined) {
         // {scouts:[{"tipo":"certo","nome":"Neymar","posicao":"14"}],"timestamp":1513260085966}
         var row = document.getElementById('iddorow2');
         var str = "";
-        for (var i = 0; i < msg.scouts.length; i++) {
+        for (var i = msg.scouts.length; i > 0; i = i - 1) {
             let interval = (msg.timestamp - timestamp_last) / msg.scouts.length;
-            let timestamp = (msg.timestamp - timestamp_init) - interval * i;
-            str += createScoutCard(msg.scouts[i], timestamp, msg.scouts.length);
+            let timestamp = (msg.timestamp - timestamp_init) - interval * (msg.scouts.length - i);
+            str += createScoutCard(msg.scouts[i - 1], timestamp, msg.scouts.length);
         };
         timestamp_last = msg.timestamp;
-        row.outerHTML += str;
+        history_html += str;
+        row.outerHTML = '<div id="iddorow2" class="history_scroll">' + history_html + '</div>'
+        // row.outerHTML += str;
     };
     if (msg.scouts != undefined) {
         xhrGet('/stat', function (result) {
@@ -111,7 +113,7 @@ function createScoutCard(scout, timestamp, length) {
     let nome = scout.nome;
     let lance = lanceGenerico(scout.tipo);
     let tempo = millisToMinutesAndSeconds(timestamp);
-    return '<div class="card row flex heightcard">' +
+    return '<div class="card cardNormal row flex">' +
         '<div class="col s3 scouts-label center-align"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
         '<div class="col s3 scouts-label center-align"><span class="player_name"><p>' + nome + '</p></span></div>' +
         '<div class="col s3 scouts-label center-align"><p>' + lance + '</p></div>' +

@@ -11,6 +11,12 @@
             font-size: 1em;
         }
 
+        #logo {
+            height: 5em;
+            width: auto;
+            margin: 1.5em;
+        }
+
         .flex {
             display: flex;
             flex-direction: row;
@@ -22,9 +28,10 @@
             justify-content: center;
         }
 
-        .player-pic {
-            width: 4.3em;
-            height: 4.3em;
+        .player-pic,
+        .team-logo {
+            height: 2.5em;
+            width: auto;
             padding: .3em 0 0 0;
         }
 
@@ -41,19 +48,30 @@
         }
 
         .card {
-            background-color: #F9E9C0 !important;
-        }
-
-        .body-color {
-            background-color: #3FA909 !important;
-        }
-
-        .heightcard {
             height: 5em;
+            margin: 0;
+            border-width: 20px;
+            border-color: black;
+            border-radius: 0;
+        }
+
+        .cardNormal {
+            background-color: #F9E9C0;
+            height: 3.5em;
         }
 
         .cardHeader {
-            background-color: #116f0f !important;
+            background-color: #116f0f;
+            height: 5em;
+        }
+
+        .body-color {
+            background-color: #3FA909;
+        }
+
+        .history_scroll {
+            max-height: 31.5em;
+            overflow: scroll;
         }
     </style>
 </head>
@@ -61,24 +79,24 @@
 <body class="body-color">
     <div class="row" id='idDoRow_s'>
         <div class="col s12 center-flex">
-            <img src="/img/ge.png" />
+            <img id="logo" src="/img/globo_esporte.png" />
         </div>
         <div class="row" id='idDoRow_stat'>
             <div class="col s6">
-                <div class="cardHeader row flex heightcard" style="color: white">
+                <div class="cardHeader row flex card" style="color: white">
                     <div class="col s5 center-align scouts-label ">
                         <p>LANCE</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
-                        <p>MANDANTE</p>
+                        <img src="/img/brasil_logo.png" class="team-logo center-align nospace" style="height:4.3em; width:auto;" />
                     </div>
                     <div class="col s4 scouts-label center-align">
-                        <p>VISITANTE</p>
+                        <img src="/img/venezuela_logo.png" class="team-logo center-align nospace" style="height:3.8em; width:auto;" />
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>GOLS</p>
+                        <p>GOL</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="gol_chute_dentro_area_1">0</p>
@@ -87,9 +105,9 @@
                         <p id="gol_chute_dentro_area_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>ASSISTÊNCIAS</p>
+                        <p>ASSISTÊNCIA</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="levantada_1">0</p>
@@ -98,9 +116,9 @@
                         <p id="levantada_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>CHUTES A GOL</p>
+                        <p>FINALIZAÇÃO</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="chute_dentro_area_bloqueado_1">0</p>
@@ -109,9 +127,9 @@
                         <p id="chute_dentro_area_bloqueado_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>PASSES CERTOS</p>
+                        <p>PASSE CERTO</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="certo_1">0</p>
@@ -120,9 +138,9 @@
                         <p id="certo_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>PASSES ERRADOS</p>
+                        <p>PASSE ERRADO</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="errado_1">0</p>
@@ -131,9 +149,9 @@
                         <p id="errado_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>DESARMES</p>
+                        <p>DESARME</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="desarme_1">0</p>
@@ -142,9 +160,9 @@
                         <p id="desarme_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>DEFESAS DO GOLEIRO</p>
+                        <p>DEFESA DO GOLEIRO</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="defesa_normal_1">0</p>
@@ -153,9 +171,9 @@
                         <p id="defesa_normal_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>FALTAS COMETIDAS</p>
+                        <p>FALTA COMETIDA</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="falta_cometida_1">0</p>
@@ -164,9 +182,9 @@
                         <p id="falta_cometida_2">0</p>
                     </div>
                 </div>
-                <div class="card row flex heightcard">
+                <div class="cardNormal row flex card">
                     <div class="col s5 center-align scouts-label">
-                        <p>CARTÕES AMARELOS</p>
+                        <p>CARTÃO AMARELO</p>
                     </div>
                     <div class="col s4 scouts-label center-align">
                         <p id="amarelo_1">0</p>
@@ -177,7 +195,7 @@
                 </div>
             </div>
             <div class="col s6">
-                <div class="cardHeader row flex heightcard" id="idDoRow_sta" style="color: white">
+                <div class="cardHeader row flex card" id="idDoRow_sta" style="color: white;">
                     <div class="col s3 scouts-label center-align">
                         <p>FOTO</p>
                     </div>
@@ -191,7 +209,7 @@
                         <p>TEMPO</p>
                     </div>
                 </div>
-                <div id="iddorow2"></div>
+                <div id="iddorow2" class="history_scroll"></div>
             </div>
         </div>
     </div>

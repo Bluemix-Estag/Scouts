@@ -31,7 +31,6 @@ app.get('/players', (req, res) => {
         body: postBody
     }, function (error, response, body) {
         if (!error) {
-            console.log(body);
             res.status(200).json(body);
         } else {
             console.log(error);
@@ -56,7 +55,6 @@ app.get('/stat', (req, res) => {
         body: postBody
     }, function (error, response, body) {
         if (!error) {
-            console.log(body[0]);
             res.status(200).json(body);
         } else {
             console.log(error);

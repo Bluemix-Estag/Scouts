@@ -1,9 +1,7 @@
 var wsUri = "wss://jimmycricket-orquestrador.mybluemix.net/websocket";
 try {
     var ws = new WebSocket(wsUri);
-} catch (err) {
-    console.log("caquita do websocket");
-};
+} catch (err) {};
 var timestamp_init = Date.now();
 var timestamp_last = Date.now();
 var history_html = '';
@@ -21,9 +19,7 @@ ws.onopen = function (ev) {
             };
         };
         r.innerHTML += str_1;
-    }, function (err) {
-        alert('i deu erro');
-    });
+    }, function (err) {});
 };
 ws.onmessage = function (ev) {
     let msg = JSON.parse(ev.data);
@@ -52,9 +48,7 @@ ws.onmessage = function (ev) {
                 };
             };
             r.innerHTML += str_1;
-        }, function (err) {
-            alert('i deu erro');
-        });
+        }, function (err) {});
     };
 };
 ws.onclose = function (ev) {

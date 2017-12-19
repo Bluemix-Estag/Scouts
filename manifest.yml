@@ -3,6 +3,6 @@ applications:
   memory: 128M
   instances: 1
   domain: mybluemix.net
-  name: Cartola FC
+  name: '[Globo] - Cartola FC'
   host: globoesporte-cartola
   disk_quota: 128M

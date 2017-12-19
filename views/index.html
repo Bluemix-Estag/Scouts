@@ -6,109 +6,102 @@
     <title>Scouts - Globo Esporte</title>
     <link rel="shortcut icon" href="http://s.glbimg.com/es/ge/static/live/globoesporte/img/logos/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <style>
         body {
-            overflow-y: hidden;
-            overflow-x: hidden;
-            padding-top: 50px;
-        }
-
-        .flex {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 10px;
+            overflow: scroll;
         }
 
         .center-flex {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
         }
 
-        .logo_div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 10px 0 10px;
+        #logo {
+            height: 6.5em;
+            width: auto;
+            margin: 3em 0 1em 2.5em;
         }
 
-        .logo {
-            width: 50px;
-            height: 50px;
+        .select-wrapper {
+            color: white;
         }
 
-        .player-pic {
-            width: 90px;
-            height: 90px;
-
-            padding-top: 10px;
+        .dropdown-content {
+            background-color: #0f7d12;
+            border-radius: .5em;
         }
 
-        .player_name,
-        .bold {
-            font-weight: bold;
-            font-size: 12px;
+        .dropdown-content li {
+            background-color: #EBDDBE;
+            color: #000;
         }
 
-        .withSpace {
-
-            margin: 0 20px 0 20px;
+        .dropdown-content li :hover {
+            background-color: #f9f9f9;
+            color: #0f7d12;
         }
 
-        .scouts {
-            font-size: 20px;
-            justify-content: center;
-            margin: 0px !important;
-            padding: 0px !important;
+        .dropdown-content li span {
+            color: #000;
         }
 
-        .scouts-label {
-            font-size: 12px;
-            margin: 0px !important;
-            padding: 0px !important;
-            justify-content: center;
+        .body-color {
+            background-color: #3aab00;
         }
 
-        .card {
-            background-color: #F9E9C0 !important;
-        }
-
-        .nospace {
-            margin: 0px !important;
-            padding: 0px !important;
+        #scout-button {
+            background-color: #0f7d12;
+            margin: 2em;
         }
     </style>
 </head>
 
-<body class="orange darken-3">
+<body class="body-color">
     <div class="row" id='idDoRow'>
         <div class="col s12 center-flex">
-            <img src="/img/cartola.png" />
+            <img id="logo" src="/img/cartola.png" />
         </div>
-        <div class="col s12 m10 offset-m1 l8 offset-l2">
-            <div class="card row flex" id="idDoHeader">
-                <div class="col s1 center-align scouts-label">
-                    TIME
-                </div>
-                <div class="col s2 scouts-label center-align">
-                    FOTO
-                </div>
-                <div class="col s1 scouts-label center-align">
-                    JOGADOR
-                </div>
-                <div class="col s2 center-align scouts-label">OVERALL</div>
-                <div class="col s2 center-align scouts-label">PASSES
-                    <br>CERTOS</div>
-                <div class="col s2 center-align scouts-label">PASSES
-                    <br>ERRADOS</div>
-                <div class="col s2 center-align scouts-label">ASSISTÊNCIAS</div>
+        <div class="col offset-s3 s6">
+            <div class="input-field col s12">
+                <select>
+                    <option value="" disabled selected>Campeonato</option>
+                    <option value="1">Eliminatórias da Copa</option>
+                </select>
+            </div>
+            <div class="input-field col s12">
+                <select>
+                    <option value="" disabled selected>Ano</option>
+                    <option value="1">2017</option>
+                </select>
+            </div>
+            <div class="input-field col s12">
+                <select>
+                    <option value="" disabled selected>Número da rodada</option>
+                    <option value="1">1ª</option>
+                </select>
+            </div>
+            <div class="input-field col s12">
+                <select>
+                    <option value="" disabled selected>Partida</option>
+                    <option value="1">Brasil x Venezuela</option>
+                </select>
+            </div>
+            <div class="col s12 center-align">
+                <a class="waves-effect waves-light btn" id="scout-button">SCOUT!</a>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="/js/index.js"></script>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+        $("#scout-button").click(function () {
+            window.location.href = '/scout';
+        });
+    </script>
 </body>
 
 </html>

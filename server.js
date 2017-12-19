@@ -8,11 +8,11 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
     res.render('index.html');
 });
-app.get('/select', (req, res) => {
-    res.render('select.html');
+app.get('/alternative', (req, res) => {
+    res.render('alternative.html');
 });
-app.get('/history', (req, res) => {
-    res.render('history.html');
+app.get('/scout', (req, res) => {
+    res.render('scout.html');
 });
 app.get('/players', (req, res) => {
     let postBody = {

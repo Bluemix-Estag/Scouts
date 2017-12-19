@@ -3,19 +3,20 @@ try {
     var ws = new WebSocket(wsUri);
 } catch (err) {
     console.log("caquita do websocket");
-}
+};
 var timestamp_init = Date.now();
 var timestamp_last = Date.now();
-var timerID = 0;
 var history_html = '';
+var timerID = 0;
+var colorID = 0;
 ws.onopen = function (ev) {
     keepAlive();
     xhrGet('/stat', function (result) {
         result = JSON.parse(result);
-        var r = document.getElementById('idDoRow_stat');
-        var str_1 = '';
-        for (var i = 0; i < result.length; i++) {
-            for (var key in result[0].stats) {
+        let r = document.getElementById('idDoRow_stat');
+        let str_1 = '';
+        for (let i = 0; i < result.length; i++) {
+            for (let key in result[0].stats) {
                 createStatisticsCard(result[i], key, i);
             };
         };
@@ -27,26 +28,26 @@ ws.onopen = function (ev) {
 ws.onmessage = function (ev) {
     let msg = JSON.parse(ev.data);
     if (msg.scouts != undefined) {
-        // {scouts:[{"tipo":"certo","nome":"Neymar","posicao":"14"}],"timestamp":1513260085966}
-        var row = document.getElementById('iddorow2');
-        var str = "";
-        for (var i = msg.scouts.length; i > 0; i = i - 1) {
+        // {scouts:[{tipo:'certo',nome:'Neymar',posicao:'14'}],timestamp:1513260085966}
+        let row = document.getElementById('iddorow2');
+        let str = "";
+        for (let i = msg.scouts.length; i > 0; i = i - 1) {
             let interval = (msg.timestamp - timestamp_last) / msg.scouts.length;
             let timestamp = (msg.timestamp - timestamp_init) - interval * (msg.scouts.length - i);
-            str += createScoutCard(msg.scouts[i - 1], timestamp, msg.scouts.length);
+            colorID = (colorID == 0) ? 1 : 0;
+            str += createScoutCard(msg.scouts[i - 1], timestamp, colorID);
         };
         timestamp_last = msg.timestamp;
-        history_html += str;
-        row.outerHTML = '<div id="iddorow2" class="history_scroll">' + history_html + '</div>'
-        // row.outerHTML += str;
+        history_html = str + history_html;
+        row.outerHTML = '<div id="iddorow2" class="history_scroll">' + history_html + '</div>';
     };
     if (msg.scouts != undefined) {
         xhrGet('/stat', function (result) {
             result = JSON.parse(result);
-            var r = document.getElementById('idDoRow_stat');
-            var str_1 = '';
-            for (var i = 0; i < result.length; i++) {
-                for (var key in result[0].stats) {
+            let r = document.getElementById('idDoRow_stat');
+            let str_1 = '';
+            for (let i = 0; i < result.length; i++) {
+                for (let key in result[0].stats) {
                     createStatisticsCard(result[i], key, i);
                 };
             };
@@ -64,7 +65,6 @@ function keepAlive() {
     let timeout = 20000;
     if (ws.readyState == ws.OPEN) {
         ws.send('');
-        console.log('Echo');
     };
     timerID = setTimeout(keepAlive, timeout);
 };
@@ -91,12 +91,11 @@ function createXHR() {
 };
 
 function xhrGet(url, callback, errback) {
-    var xhr = new createXHR();
+    let xhr = new createXHR();
     xhr.open('GET', url, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                console.log('test');
                 callback(xhr.responseText);
             } else {
                 errback((xhr.responseText));
@@ -108,12 +107,12 @@ function xhrGet(url, callback, errback) {
     xhr.send();
 };
 
-function createScoutCard(scout, timestamp, length) {
+function createScoutCard(scout, timestamp, color) {
     let img = '/img/player_icon.png';
     let nome = scout.nome;
     let lance = lanceGenerico(scout.tipo);
     let tempo = millisToMinutesAndSeconds(timestamp);
-    return '<div class="card cardNormal row flex">' +
+    return '<div class="card cardNormal' + color + ' row flex">' +
         '<div class="col s3 scouts-label center-align"><img src="' + img + '" class="player-pic center-align nospace"/></div>' +
         '<div class="col s3 scouts-label center-align"><span class="player_name"><p>' + nome + '</p></span></div>' +
         '<div class="col s3 scouts-label center-align"><p>' + lance + '</p></div>' +
@@ -122,8 +121,8 @@ function createScoutCard(scout, timestamp, length) {
 }
 
 function millisToMinutesAndSeconds(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    let minutes = Math.floor(millis / 60000);
+    let seconds = ((millis % 60000) / 1000).toFixed(0);
     return `${minutes}:${(seconds < 10 ? '0':'')}${seconds}`;
 };
 
